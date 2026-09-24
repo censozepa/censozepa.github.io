@@ -129,8 +129,8 @@ header {
 .headerIcon {
 	width: 50px;
 	height: 50px;
-	-webkit-clip-path: url(#shape);
-	clip-path: url(#shape);
+	border-radius: 50%;
+	object-fit: cover;
 }
 
 @media only screen and (max-width: 768px) {
@@ -267,8 +267,9 @@ nav > ul li a:active {
 .appIconLarge {
 	width: 120px;
 	height: 120px;
-	-webkit-clip-path: url(#shape120);
-	clip-path: url(#shape120);
+	border-radius: 50%;
+	object-fit: cover;
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
 }
 
 .appNamePriceContainer {

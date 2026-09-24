@@ -65,7 +65,7 @@ cover_overlay_color                       : "#12261b"
 cover_overlay_transparency                : 0.85
 
 body_background_color                     : "#f8fafc"
-link_color                                : "#2e7d32"
+link_color                                : "#297135"
 
 app_title_color                           : "#ffffff"
 app_price_color                           : "#c8e6c9"
@@ -74,10 +74,10 @@ app_description_color                     : "#f1f5f9"
 feature_title_color                       : "#1e293b"
 feature_text_color                        : "#475569"
 
-feature_icons_foreground_color            : "#2e7d32"
+feature_icons_foreground_color            : "#297135"
 feature_icons_background_color            : "#e8f5e9"
 
-social_icons_foreground_color             : "#2e7d32"
+social_icons_foreground_color             : "#297135"
 social_icons_background_color             : "#e8f5e9"
 
 footer_text_color                         : "#64748b"
@@ -94,7 +94,6 @@ exclude:
   - README.md
   - CNAME
   - vendor
-  - test
 
 collections:
   pages:
