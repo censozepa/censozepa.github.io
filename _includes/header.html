@@ -1,0 +1,26 @@
+<header>
+	<div class="logo">
+		<div class="appIconShadow">
+			<a href="{{ '/' | relative_url }}" target="_self">
+				<img class="headerIcon" src="{{ site.app_icon | relative_url }}" alt="{{ site.app_name }}">
+			</a>
+			<div class="divider"></div>
+		</div>
+		<p class="headerName">
+			<a href="{{ '/' | relative_url }}" target="_self" style="color: inherit; text-decoration: none;">{{ site.app_name }}</a>
+		</p>
+	</div>
+	<nav class="scroll">
+		<ul>
+			<li><a href="{{ '/' | relative_url }}" target="_self"><i class="fas fa-home"></i> Inicio</a></li>
+			{% for page in site.pages %}
+				{% if page.include_in_header == true %}
+				<li><a href="{{ page.url | relative_url }}" target="_self">{{ page.title }}</a></li>
+				{% endif %}
+			{% endfor %}
+			{% if site.github_repo %}
+				<li><a href="{{ site.github_repo }}" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></li>
+			{% endif %}
+		</ul>
+	</nav>
+</header>

@@ -1,0 +1,37 @@
+<footer>
+	<div class="footerContent">
+		<p class="footerText">
+			<strong>{{ site.app_name }}</strong> — Sistema Móvil de Censos Ornitológicos en la Red Natura 2000.
+		</p>
+		<p class="footerSubtext">
+			Proyecto de software libre licenciado bajo <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank" rel="noopener">GNU GPLv3</a>. Datos oficiales basados en el Banco de Datos de la Naturaleza (MITECO).
+		</p>
+		<div class="footerLinks">
+			<a href="{{ '/' | relative_url }}">Inicio</a> ·
+			<a href="{{ '/metodologia/' | relative_url }}">Metodología</a> ·
+			<a href="{{ '/manual/' | relative_url }}">Guía de Uso</a> ·
+			<a href="{{ '/privacidad/' | relative_url }}">Privacidad</a>
+			{% if site.github_repo %}
+				· <a href="{{ site.github_repo }}" target="_blank" rel="noopener">Código Fuente en GitHub</a>
+			{% endif %}
+		</div>
+	</div>
+	<div class="footerIcons">
+		{% if site.github_username %}
+			<a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener" aria-label="GitHub">
+				<span class="fa-stack fa-1x">
+					<i class="socialIconBack fas fa-circle fa-stack-2x"></i>
+					<i class="socialIconTop fab fa-github fa-stack-1x"></i>
+				</span>
+			</a>
+		{% endif %}
+		{% if site.email_address and site.email_address != "" %}
+			<a href="mailto:{{ site.email_address }}" aria-label="Email">
+				<span class="fa-stack fa-1x">
+					<i class="socialIconBack fas fa-circle fa-stack-2x"></i>
+					<i class="socialIconTop fas fa-envelope fa-stack-1x"></i>
+				</span>
+			</a>
+		{% endif %}
+	</div>
+</footer>

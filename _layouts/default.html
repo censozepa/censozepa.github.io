@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+
+{% include head.html %}
+
+<body>
+    <div class="imageWrapper">
+        <div class="headerBackground">
+            <div class="container">
+                {% include header.html %}
+                
+                <!-- Dispositivo Móvil Android con Capturas Reales -->
+                <div class="androidDeviceContainer">
+                    <div class="androidDevice">
+                        <div class="androidSpeaker"></div>
+                        <div class="androidCamera"></div>
+                        <div class="androidScreenFrame">
+                            <img id="activeAndroidScreen" class="androidScreenImg" src="{{ 'assets/screenshot/menu.png' | relative_url }}" alt="Captura de Censo ZEPA">
+                        </div>
+                    </div>
+                    <div class="screenshotNav">
+                        <button type="button" class="screenshotTab active" data-src="{{ 'assets/screenshot/menu.png' | relative_url }}">
+                            <i class="fas fa-home"></i> Menú
+                        </button>
+                        <button type="button" class="screenshotTab" data-src="{{ 'assets/screenshot/contador.png' | relative_url }}">
+                            <i class="fas fa-calculator"></i> Conteo
+                        </button>
+                        <button type="button" class="screenshotTab" data-src="{{ 'assets/screenshot/list.png' | relative_url }}">
+                            <i class="fas fa-dove"></i> Aves
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Información de la Aplicación y Botones de Descarga -->
+                <div class="appInfo">
+                    <div class="appIconShadow">
+                        <img class="appIconLarge" src="{{ site.app_icon | relative_url }}" alt="{{ site.app_name }} Icon">
+                    </div>
+                    <div class="appNamePriceContainer">
+                        <h1 class="appName">
+                            {{ site.app_name }}
+                        </h1>
+                        <h2 class="appPrice">
+                            <i class="fas fa-check-circle"></i> {{ site.app_price }}
+                        </h2>
+                    </div>
+                    <div class="appDescriptionContainer">
+                        <p class="appDescription">
+                            {{ site.app_description }}
+                        </p>
+                    </div>
+                    <div class="downloadButtonsContainer">
+                        {% if site.apk_download_link %}
+                            <a class="downloadBadge apkBadge" href="{{ site.apk_download_link }}" target="_blank" rel="noopener">
+                                <i class="fab fa-android badgeIcon"></i>
+                                <div class="badgeText">
+                                    <span class="badgeSub">Descarga directa</span>
+                                    <span class="badgeTitle">APK Android</span>
+                                </div>
+                            </a>
+                        {% endif %}
+                        {% if site.github_repo %}
+                            <a class="downloadBadge githubBadge" href="{{ site.github_repo }}" target="_blank" rel="noopener">
+                                <i class="fab fa-github badgeIcon"></i>
+                                <div class="badgeText">
+                                    <span class="badgeSub">Repositorio</span>
+                                    <span class="badgeTitle">GitHub</span>
+                                </div>
+                            </a>
+                        {% endif %}
+                        {% if site.playstore_link and site.playstore_link != "" %}
+                            <a class="playStoreLink" href="{{ site.playstore_link }}" target="_blank" rel="noopener">
+                                <img class="playStore" src="{{ 'assets/playstore.png' | relative_url }}" alt="Disponible en Google Play">
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+
+                {% include features.html %}
+                {% include footer.html %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Script interactivo para alternar capturas de pantalla -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var tabs = document.querySelectorAll(".screenshotTab");
+            var screenImg = document.getElementById("activeAndroidScreen");
+            if (!screenImg || !tabs.length) return;
+
+            var images = [];
+            tabs.forEach(function(tab, index) {
+                images.push(tab.getAttribute("data-src"));
+                tab.addEventListener("click", function() {
+                    setScreen(index);
+                });
+            });
+
+            var currentIndex = 0;
+            function setScreen(idx) {
+                currentIndex = idx;
+                tabs.forEach(function(t, i) {
+                    if (i === idx) {
+                        t.classList.add("active");
+                    } else {
+                        t.classList.remove("active");
+                    }
+                });
+                screenImg.style.opacity = "0.2";
+                setTimeout(function() {
+                    screenImg.src = images[idx];
+                    screenImg.style.opacity = "1";
+                }, 150);
+            }
+
+            var autoRotate = setInterval(function() {
+                var next = (currentIndex + 1) % images.length;
+                setScreen(next);
+            }, 6000);
+
+            tabs.forEach(function(tab) {
+                tab.addEventListener("click", function() {
+                    clearInterval(autoRotate);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
